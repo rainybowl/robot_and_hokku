@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	background-color:  #F5FDF9;
+}	  
+	  
+#main_robot {
+	width: 600px; 
+	height: 150px; 
+	/*border: 2px solid #7CAA6C;*/
+	position: absolute;
+	/*background-color: #F5FDF9;*/
+	border-radius: 15px;
+	z-index: 100;
+}
+
+#robot, #robot_looking {
+	width: 50px;
+	height:80px;
+	top: 70px;
+	left: 0px;
+	position: absolute;
+	padding: 0px;
+}
+
+#face {	
+	margin: 5px 5px 0 5px;
+	width: 40px;
+	height: 25px;
+}
+
+#eyes {
+	margin-top:5px;
+	margin-left:6px;
+	width: 28px;
+	height:3px;
+}
+
+#left_eye, #right_eye, #turned_eye {
+	width: 3px;
+	height:3px;
+	background-color: black;		
+}
+
+#left_eye {
+	float: left;	   
+}
+
+#right_eye {
+	margin-left: 25px
+}
+
+#smile {
+	width: 20px;
+	height: 3px;
+	position: absolute;
+	top: 20px;
+	left: 16px;
+}
+
+#smile_left, #smile_right {
+	width: 3px;
+	height: 3px;
+	background-color: green;
+	display: none;
+}
+
+#smile_left {
+	float: left;
+}
+
+#smile_right {
+	margin-left: 17px;
+}
+
+#mouth {
+	width: 16px;
+	height: 3px;
+	background-color: green;
+	position: absolute;
+	top: 23px;
+	left: 18px;
+}
+
+#left_foot, 
+#right_foot, 
+#body, 
+#rocket_bottom_left, 
+#rocket_bottom_right {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+#left_foot, 
+#right_foot, 
+#body, 
+#rocket_bottom_left, 
+#rocket_bottom_right,
+#face,
+#head_turned,
+#body_turned,
+#foot_turned {
+		background-color: #D8D9E0;
+}
+
+#message, 
+#face, 
+#rocket-body, 
+#rocket_bottom, 
+#window, 
+#head_turned, 
+#body_turned, 
+#foot_turned, 
+#hand, 
+#talk {
+	border: 1px solid black;
+}
+
+#body {
+	width: 30px;
+	height: 40px;
+	margin-left: 10px;
+}
+
+#left_foot, #right_foot {
+	width: 7px;
+	height: 5px;
+}
+
+div.feet {
+	width: 24px;
+	height:5px;
+	margin-left: 12px;
+}
+
+#right_foot {
+	margin-left: 30px;
+}
+
+#left_foot {
+	margin-left: 13px;
+	float: left;
+}
+
+#message {
+	position: absolute; 
+	top: 100px; 
+	padding: 5px;
+	font-family: Verdana;
+	font-size: 12px;
+}
+
+#rocket {
+	width: 95px;
+	height: 130px;
+	border: none;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;	
+}
+		
+#roof_left, #roof_right {
+	width: 30px;
+	height: 40px;
+	position: absolute;
+}
+			
+#roof_left {
+	top: 8px;
+	left: 28px;
+	border-left: 1px solid black;
+	-moz-transform:rotate(35deg);
+	-webkit-transform:rotate(35deg);
+}
+			
+#roof_right {
+	top: 8px;
+	left: 25px;
+	border-right: 1px solid black;
+	-moz-transform:rotate(-35deg);
+	-webkit-transform:rotate(-35deg);
+}
+
+#rocket-body {
+	width: 45px;
+	height: 70px;
+	position: absolute;
+	top: 36px;
+	left: 18px;
+}
+
+#rocket_bottom {
+	width:63px;
+	height: 14px;
+	position: absolute;
+	left: 9px;
+	top:107px;				
+}
+				
+#rocket_bottom_left, #rocket_bottom_right {
+	width: 15px;
+	height: 9px;
+	position: absolute;
+	top:120px;
+	z-index: 10;
+	background-color: white;
+}
+
+#rocket_bottom_left	{
+	left: 9px;
+}
+						
+#rocket_bottom_right {
+	left: 57px;
+}
+
+#window {
+	width: 30px;
+	height: 40px;
+	position: absolute;
+	top: 15px;
+	left: 7px;
+	border-radius: 15px;
+}		
+		
+#robot_turned {
+	position: absolute;
+	top: 390px;
+	width: 50px;
+	height:80px;
+	border: 1px solid red;
+}
+				
+#head_turned {
+	width: 20px;
+	height:25px;
+	position: absolute;
+	top: 5px;
+	left: 15px;
+}
+
+#body_turned {
+	width: 30px;
+	height: 40px;
+	position: absolute;
+	top: 31px;
+	left: 10px;
+}
+				
+#turned_eye	{
+	position: absolute;
+	left:17px;
+	top:5px;
+}
+
+#foot_turned {
+	width: 20px;
+	height:5px;
+	position: absolute;
+	top: 72px;
+	left: 15px;
+}
+
+#hand {
+	border-top: none; 
+	width: 10px; 
+	height: 20px; 
+	position: absolute; 
+	top: 8px; 
+	left: 9px;
+}
+
+#pristupok {
+	width: 110px;
+	height: 9px;
+	position: absolute;
+	z-index: 1;
+	bottom: 0px;
+	right: 0px;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	border-top-left-radius: 10px;
+	background-color: #B2DBC6;
+}
+
+#cloud {
+	width: 150px;
+	height: 70px;
+	margin-left: 10px;
+	margin-top: 3px;
+	position: relative;
+}
+			
+#talk {
+	width: 80px;
+	height: 30px;
+	border-radius: 30px;
+	padding: 5px 10px;
+	font-size: 11px;
+	background-color: white;
+}			
+			
+#arrow	{
+	width: 10px;
+	height: 30px;
+	border: none;
+	margin-top: -18px;
+	background-color: white;
+	border-left: 1px solid black;
+}
+			
+#arrowL	{
+	width: 1px;
+	height: 20px;
+	border: none;
+	border-left: 1px solid black;
+	transform:rotate(30deg);
+	-moz-transform:rotate(30deg);
+	-webkit-transform:rotate(30deg);
+	margin-top: -18px;
+	margin-left: 5px;
+}
+					
+</style>
+
+
+<script type="text/javascript">
+
+function el( id ){
+	return document.getElementById( id );
+}
+
+function show(){
+	for(var i = 0; i<arguments.length; i++)
+		arguments[i].style.display = 'block';
+}
+
+function hide(){
+	for(var i = 0; i<arguments.length; i++)
+		arguments[i].style.display = 'none';
+}
+
+
+function createElem(params){
+
+	var elem = document.createElement( (params.type) ? params.type : 'div');
+	elem.id = params.id;
+	
+	if(params.width) elem.style.width = params.width;
+	if(params.height) elem.style.height = params.height;
+	if(params.top) elem.style.top = params.width;
+	if(params.left) elem.style.left = params.left;
+	if(params.display) elem.style.display = params.display;	
+	
+	var home = (params.where) ? el(params.where) : document;
+	home.appendChild(elem);
+	
+	if(params.details){
+		for(var i = 0; i<params.details.length; i++){
+			createElem(
+				{
+					id: params.details[i].id,
+					where: params.id,
+					details: params.details[i].details
+				})
+		}
+	}
+}
+
+
+var Details = {
+	elements: [
+		//robot
+		{
+			id: 'robot',
+			width: '50px',
+			height: '80px',
+			left: '0px',
+			where: 'main_robot'
+		},
+		
+		{
+			id: 'robot_looking', 
+			width: '50px',
+			height: '80px',
+			left: '0px',
+			where: 'main_robot',
+		},
+		
+		{
+			id: 'face', 
+			where: 'robot_looking',
+			details: [
+				{ 
+					id: 'eyes',
+					
+					details: [
+						{
+							id:'left_eye'
+						},
+						{
+							id:'right_eye'
+						},
+					]
+				},
+				{
+					id: 'smile',
+					
+					details: [
+						{
+							id: 'smile_left', 
+						},
+						
+						{
+							id: 'smile_right', 
+						}
+					]
+				},
+				
+				{
+					id: 'mouth'
+				}
+			]
+			
+		},
+		
+		
+		{
+			id: 'body', 
+			where: 'robot_looking'
+		},
+		
+		{
+			id: 'feet', 
+			where: 'robot_looking',
+			
+			details: [
+				{
+					id: 'left_foot', 
+				},
+				
+				{
+					id: 'right_foot', 
+				}
+			]
+		},
+			
+		//turned
+		{
+			id: 'robot_turned', 
+			display: 'none',
+			left: '0px',
+			where: 'main_robot',
+			
+			details: [
+				{
+					id: 'head_turned', 
+					details: [
+						{
+							id: 'turned_eye'
+						}
+					]
+				},
+					
+				{
+					id: 'body_turned', 
+					details: [
+						{
+							id: 'hand'
+						}
+					]
+				},
+				
+				{
+					id: 'foot_turned', 
+					where: 'robot_turned'
+				}
+				
+			]
+		},		
+		
+		//rocket
+		{
+			id: 'rocket', 
+			where: 'main_robot',
+			
+			details: [
+				{
+					id: 'roof_left'
+				},
+			
+				{
+					id: 'roof_right'
+				},
+			
+				{
+					id: 'rocket-body',
+					details: [
+						{
+							id: 'window'
+						}
+					]
+				},
+				
+				{
+					id: 'rocket_bottom'
+				},
+			
+				{
+					id: 'rocket_bottom_left'
+				},
+			
+				{
+					id: 'rocket_bottom_right'
+				}
+			]
+		},
+
+		{
+			id: 'pristupok', 
+			where: 'main_robot'
+		},
+		
+		// cloud
+		{
+			id: 'cloud',
+			top: '5px',
+			left: '0px',
+			display: 'none',
+			where: 'main_robot',
+			
+			details: [
+				{
+					id: 'talk', 
+				},
+
+				{
+					id: 'arrow', 
+				},
+				
+				{
+					id: 'arrowL', 
+				}	
+			]
+		},	
+		
+	],
+	
+	create: function(){
+		var i, 
+			len = this.elements.length;
+			
+		for (i=0; i<len; i++){
+			createElem(this.elements[i])
+		}
+	}	
+}
+
+
+var Robot = function(){
+	
+	this.smile = function(){
+		show( el('smile_left'), el('smile_right') )
+	},
+	
+	this.look = function(event){
+		event = window.event || event;
+		var key = event.keyCode;
+
+		if (parseInt(robot.style.left) != 11 && key != 116)
+		//to avoid robot doubling when refreshing page with F5 
+			setTimeout("el('robot').innerHTML = el('robot_looking').innerHTML;", 1000);
+	},
+	
+	this.turn = function(event){
+		event = window.event || event;
+		var key = event.keyCode;
+	
+		var robot = el('robot');
+		var looking = el('robot_looking');
+		robot.innerHTML = robot_looking.innerHTML;
+		
+		var mainLeft = parseInt(el('main_robot').style.left); 
+		var mainRight = mainLeft + parseInt(el('main_robot').style.width);
+
+		var robotLeft = parseInt(robot.style.left) + mainLeft;
+		var robotRight = robotLeft + parseInt(robot.style.width);
+		
+			//the cloud moves too
+			el('cloud').style.left = parseInt(robot.style.left) + 15 + 'px';
+			hide(el('robot_looking'));
+			robot.innerHTML = el('robot_turned').innerHTML;
+			
+			if (key == 39 && robotRight < mainRight - 120) { //right		
+				if (robotRight < mainRight)
+					robot.style.left = (parseInt(robot.style.left) + 5) + 'px';	
+			}
+			else
+			
+				if (key == 37 ) { //left
+					el('turned_eye').style.left = '0px';					
+										
+					if (robotLeft > mainLeft)
+						robot.style.left = (parseInt(robot.style.left) - 5) + 'px';					
+				}
+				
+			if(robotRight > mainRight - 135){ //smile
+				robo.smile();
+			}	
+
+			if(robotRight > mainRight - 125){ //can get into the rocket!
+				console.log('can get into the rocket!');
+
+				robot.style.display = 'none';
+				el('cloud').style.display = 'none';
+
+			if(!this.isInsideRocket)
+				$('#window').append('<div style="width: 24px;height: 22px; border: 1px solid #000;background-color: #D8D9E0; position: absolute; top: 10px; left: 2px;"><div style=" width: 2px;height: 2px;background-color: #000;position: absolute;top: 6px;left: 5px;"></div><div style="width: 2px;height: 2px;background-color: #000;position: absolute;top: 6px;left: 16px;"></div><div style="border: 2px solid green;border-top: none;width: 14px;height: 2px;position: absolute;top: 14px;left: 3px;"></div></div>');
+
+
+			this.isInsideRocket = true;
+
+
+			}				
+	},
+
+	this.write = function(str){
+		talk.innerHTML = str;	
+	},
+	
+	this.say = function(words){
+	
+			var str = '';
+
+			for (var i=0; str.length<words.length; i++){
+				str+=words[i];
+				setTimeout("robo.write('"+str+"')", i*100);				
+			}		
+	},
+	
+	this.talk = function(text){
+		if (!flag)
+		{
+			flag = 1;
+			show(el('cloud'));
+			
+			for(var i=0; i<text.length; i++)
+			{	
+				setTimeout("robo.say('"+text[i]+"')", i*text[i].length*150);	
+			}
+			
+			setTimeout("hide(el('cloud')); flag = 0", (i+10)*1000);
+		}
+	},
+
+	this.isInsideRocket = false;
+}
+
+var robo = new Robot;
+var flag;
+
+var hokku = [
+	['Яркая луна.', 'Ступая в твой след',  'Иду лунной тропинкой', 'Звёздам навстречу...'],
+	['Тихо-тихо ползи', 'Улитка, по склону Фудзи,', 'Вверх, до самых высот.'],
+	['Где же светлячки?', 'От людской погони', 'Скрылись на луне.'],
+	//['Так я и знал наперед,', 'Что они красивы, эти грибы,', 'Убивающие людей!']
+];
+
+window.onload = function(){
+
+	Details.create();
+	
+	el('main_robot').onmouseover = function(){
+
+		if(!robo.isInsideRocket)
+		robo.talk(hokku[Math.floor( Math.random() * hokku.length )]);
+	}
+	
+	window.onkeydown = function(e){
+		robo.turn(e);
+	}
+
+	window.onkeyup = function(e){
+		robo.look(e);
+	}
+}
+
+</script>
+</head>
+	<body>
+		<div id="main_robot" style="width: 900px; height: 150px; bottom: 0px; left: 30px"></div>
+	</body>
+</html>
